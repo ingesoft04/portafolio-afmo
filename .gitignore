@@ -38,3 +38,9 @@ yarn-error.log*
 /.wrangler/
 /outputs/
 /work/
+/.pnpm-store/
+/tmp/
+/.openai/.openai/
+/app/_sites-preview/
+/output/qa/
+/output/*.log

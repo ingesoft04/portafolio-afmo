@@ -1,100 +1,128 @@
-# vinext-starter
+# Portafolio FMV InfraSec
 
-A clean full-stack starter running on
-[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
-Drizzle support.
+Portafolio bilingüe de Andrés Felipe Martínez Obando para oportunidades remotas en ingeniería de software, seguridad de la información, infraestructura, soporte técnico y mecatrónica automotriz.
 
-## Prerequisites
+## Datos públicos
 
-- Node.js `>=22.13.0`
+- Correo: `ingenierossoftware31@gmail.com`
+- Teléfono y WhatsApp corporativo: `+57 302 528 6029`
+- Idiomas de la web: español e inglés
+- Apariencia: modo claro y oscuro
+- LinkedIn: `linkedin.com/in/anmartinez94`
+- GitHub: `github.com/ingesoft04`
+- Upwork: `freelancers/~0199b81b4f763382ef`
 
-## Quick Start
+## Requisitos
+
+- Node.js 22.13 o superior
+- pnpm 10 o superior
+- Git
+- Docker Desktop o Docker Engine, únicamente para la ruta con contenedores
+
+## Windows
+
+Abra PowerShell:
+
+```powershell
+cd C:\Personal\Portafolio
+pnpm install
+pnpm run dev
+```
+
+Abra `http://localhost:3000/`. Para probar la versión de producción:
+
+```powershell
+pnpm run build
+pnpm start
+```
+
+## Linux
 
 ```bash
-npm install
-npm run dev
-npm run build
+cd /ruta/Portafolio
+pnpm install
+pnpm run dev
 ```
 
-This starter does not use `wrangler.jsonc`.
+Para producción:
 
-## Included Shape
-
-- edit site code under `app/`
-- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
-- `vite.config.ts` simulates declared bindings for local development
-- `db/schema.ts` starts intentionally empty
-- `examples/d1/` contains an optional D1 example surface
-- `drizzle.config.ts` supports local migration generation when needed
-
-## Workspace Auth Headers
-
-Signed-in visitors receive both `oai-authenticated-user-id` and `oai-authenticated-user-email`. Private Sites require every visitor to sign in; public Sites may also have anonymous visitors, for whom neither header is present.
-
-The user ID is stable for the same user on the same Site and different across Sites. Email and name are intended for display or contact purposes.
-
-SIWC-authenticated workspace sites may also receive
-`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
-`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
-`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
-
-Treat the full name as optional and fall back to email when it is absent:
-
-```tsx
-import { headers } from "next/headers";
-
-export default async function Home() {
-  const requestHeaders = await headers();
-  const userId = requestHeaders.get("oai-authenticated-user-id");
-  const email = requestHeaders.get("oai-authenticated-user-email");
-  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
-  const fullName =
-    encodedFullName &&
-    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
-      "percent-encoded-utf-8"
-      ? decodeURIComponent(encodedFullName)
-      : null;
-
-  const displayName = fullName ?? email;
-  // ...
-}
+```bash
+pnpm run build
+PORT=3000 pnpm start
 ```
 
-## Optional Dispatch-Owned ChatGPT Sign-In
+Use un proxy inverso como Nginx, Caddy o Traefik para publicar con HTTPS.
 
-Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
-optional or required ChatGPT sign-in:
+## Docker en Windows o Linux
 
-- Use `getChatGPTUser()` for optional signed-in UI.
-- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
-  anonymous visitors through Sign in with ChatGPT.
-- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
-  browser links or actions.
-- Pass a same-origin relative `returnTo` path for the destination after sign-in
-  or sign-out. The helper validates and safely encodes it.
-- Mark protected pages with `export const dynamic = "force-dynamic"` because
-  they depend on per-request identity headers.
+Construir y ejecutar:
 
-Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
-OAuth cookies, and identity header injection. Do not implement app routes for
-those reserved paths. Routes that do not import and call the helper remain
-anonymous-compatible.
+```bash
+docker compose up -d --build
+```
 
-SIWC establishes identity only; it does not prove workspace membership. Use the
-Sites hosting platform's access policy controls for workspace-wide restrictions,
-or enforce explicit server-side membership or allowlist checks.
+Abrir `http://localhost:3000/`.
 
-Use SIWC for account pages, user-specific dashboards, saved records, and write
-actions tied to the current ChatGPT user. Leave public content anonymous.
+Ver estado y registros:
 
-## Useful Commands
+```bash
+docker compose ps
+docker compose logs -f portfolio
+```
 
-- `npm run dev`: start local development
-- `npm run build`: verify the vinext build output
-- `npm test`: build the starter and verify its rendered loading skeleton
-- `npm run db:generate`: generate Drizzle migrations after schema changes
+Detener:
 
-## Learn More
+```bash
+docker compose down
+```
 
-- [vinext Documentation](https://github.com/cloudflare/vinext)
-- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
+Para usar otro puerto público:
+
+```powershell
+$env:PORTFOLIO_PORT=8080
+docker compose up -d --build
+```
+
+En Linux:
+
+```bash
+PORTFOLIO_PORT=8080 docker compose up -d --build
+```
+
+## Publicación en Internet
+
+Rutas recomendadas:
+
+1. Codex Sites: despliegue integrado desde este proyecto.
+2. GitHub y Vercel: publicación automática después de cada `git push`.
+3. Servidor Linux con Docker: ejecutar `docker compose up -d --build` detrás de HTTPS.
+4. Windows Server con Docker Desktop: útil para una instalación administrada, aunque Linux suele requerir menos mantenimiento.
+
+En el proveedor defina `NEXT_PUBLIC_SITE_URL` con el dominio final. Así la URL canónica, los datos estructurados y la tarjeta social `public/og.png` apuntan al sitio publicado.
+
+## Arquitectura
+
+- `app/page.tsx`: composición y contenido bilingüe.
+- `app/components/`: cabecera, selector por oportunidad, casos anonimizados y contacto.
+- `app/hooks/`: preferencias persistentes de idioma y tema.
+- `app/layout.tsx`: SEO, Open Graph, Twitter Card y datos estructurados.
+- `build/`: generación y validación de perfiles PDF y manuales.
+
+## Actualizar la web
+
+Después de modificar contenido o estilos:
+
+```bash
+pnpm run docs:profiles
+pnpm run build
+```
+
+Los PDF regenerados se copian a `public/` y quedan incluidos en la siguiente compilación. Los manuales DOCX deben regenerarse con el runtime documental configurado en Codex y revisarse visualmente antes de entregarlos.
+
+## Seguridad
+
+- No agregue archivos `.env`, tokens, contraseñas o llaves privadas.
+- No publique repositorios ni accesos productivos de los casos de estudio.
+- Mantenga GitHub, proveedor de alojamiento, dominio y correo protegidos con MFA.
+- Cambie credenciales de laboratorio antes de cualquier despliegue real.
+- Valide siempre los modos claro/oscuro, idiomas, enlaces y PDF.

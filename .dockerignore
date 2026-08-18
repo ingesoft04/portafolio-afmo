@@ -1,0 +1,15 @@
+.git
+.gitignore
+.openai
+.wrangler
+.vinext
+node_modules
+dist
+output
+tmp
+.pnpm-store
+*.log
+.env*
+Dockerfile*
+docker-compose*.yml
+README.md
