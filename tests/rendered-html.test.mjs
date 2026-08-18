@@ -52,6 +52,8 @@ test("keeps professional links, documents, themes, and privacy controls wired", 
   assert.match(projects, /case-emblem/);
   assert.match(projects, /SHIELD/);
   assert.match(projects, /CAPSULE/);
+  assert.match(projects, /EDU API/);
+  assert.match(page, /Backend seguro para campus educativo virtual/);
   assert.match(preferences, /localStorage/);
   await access(new URL("../public/perfil-andres-felipe-martinez-es.pdf", import.meta.url));
   await access(new URL("../public/andres-felipe-martinez-profile-en.pdf", import.meta.url));
