@@ -1,6 +1,5 @@
 .git
 .gitignore
-.openai
 .wrangler
 .vinext
 node_modules

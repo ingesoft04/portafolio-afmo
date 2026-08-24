@@ -26,6 +26,7 @@ export function ProjectCaseStudies(props: ProjectCaseStudiesProps) {
     ["BOOK", "RESERVE", "▦"],
     ["T+", "CAPSULE", "⌁"],
     ["CBV", "EDU API", "▤"],
+    ["VIRT", "HOME LAB", "▣"],
   ];
   return <section id="proyectos" className="section projects">
     <SectionHead label={props.label} title={props.title} text={props.text}/>

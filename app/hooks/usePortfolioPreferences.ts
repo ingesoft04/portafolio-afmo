@@ -1,29 +1,50 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { isLanguage, isTheme, toggleLanguage, toggleTheme } from "../lib/portfolioLogic.mjs";
 
 export type Language = "es" | "en";
 export type Theme = "dark" | "light";
 
+const PREFERENCES_EVENT = "fmv-preferences-change";
+
+function subscribe(onStoreChange: () => void) {
+  window.addEventListener("storage", onStoreChange);
+  window.addEventListener(PREFERENCES_EVENT, onStoreChange);
+  return () => {
+    window.removeEventListener("storage", onStoreChange);
+    window.removeEventListener(PREFERENCES_EVENT, onStoreChange);
+  };
+}
+
+function getLanguageSnapshot(): Language {
+  const storedLanguage = window.localStorage.getItem("fmv-language");
+  return isLanguage(storedLanguage) ? storedLanguage : "es";
+}
+
+function getThemeSnapshot(): Theme {
+  const storedTheme = window.localStorage.getItem("fmv-theme");
+  return isTheme(storedTheme) ? storedTheme : "dark";
+}
+
+function notifyPreferenceChange() {
+  window.dispatchEvent(new Event(PREFERENCES_EVENT));
+}
+
 export function usePortfolioPreferences() {
-  const [language, setLanguage] = useState<Language>("es");
-  const [theme, setTheme] = useState<Theme>("dark");
-
-  useEffect(() => {
-    const storedLanguage = window.localStorage.getItem("fmv-language");
-    const storedTheme = window.localStorage.getItem("fmv-theme");
-    if (isLanguage(storedLanguage)) setLanguage(storedLanguage);
-    if (isTheme(storedTheme)) setTheme(storedTheme);
-  }, []);
-
-  useEffect(() => window.localStorage.setItem("fmv-language", language), [language]);
-  useEffect(() => window.localStorage.setItem("fmv-theme", theme), [theme]);
+  const language = useSyncExternalStore(subscribe, getLanguageSnapshot, () => "es");
+  const theme = useSyncExternalStore(subscribe, getThemeSnapshot, () => "dark");
 
   return {
     language,
     theme,
-    toggleLanguage: () => setLanguage(current => toggleLanguage(current)),
-    toggleTheme: () => setTheme(current => toggleTheme(current)),
+    toggleLanguage: () => {
+      window.localStorage.setItem("fmv-language", toggleLanguage(language));
+      notifyPreferenceChange();
+    },
+    toggleTheme: () => {
+      window.localStorage.setItem("fmv-theme", toggleTheme(theme));
+      notifyPreferenceChange();
+    },
   };
 }
