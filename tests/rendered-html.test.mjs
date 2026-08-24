@@ -6,7 +6,7 @@ async function render() {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(new Request("http://localhost/", { headers: { accept: "text/html" } }), {
+  return worker.fetch(new Request("https://portfolio.example/portafolioAFMO/", { headers: { accept: "text/html" } }), {
     ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) },
   }, { waitUntil() {}, passThroughOnException() {} });
 }
@@ -15,6 +15,11 @@ test("server-renders the professional portfolio and SEO metadata", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+  assert.match(response.headers.get("content-security-policy") ?? "", /frame-ancestors 'none'/);
+  assert.equal(response.headers.get("x-content-type-options"), "nosniff");
+  assert.equal(response.headers.get("x-frame-options"), "DENY");
+  assert.equal(response.headers.get("referrer-policy"), "strict-origin-when-cross-origin");
+  assert.equal(response.headers.get("strict-transport-security"), "max-age=31536000; includeSubDomains");
   const html = await response.text();
   assert.match(html, /Andrés Felipe Martínez/);
   assert.match(html, /Software, Security &amp; Infrastructure/);
@@ -54,6 +59,9 @@ test("keeps professional links, documents, themes, and privacy controls wired", 
   assert.match(projects, /CAPSULE/);
   assert.match(projects, /EDU API/);
   assert.match(page, /Backend seguro para campus educativo virtual/);
+  assert.match(page, /Laboratorio de infraestructura y almacenamiento virtualizado/);
+  assert.doesNotMatch(page, /KVM|libvirt|QCOW2|OpenMediaVault|Ubuntu Server 24\.04|Windows Server 2025|Windows 10/);
+  assert.doesNotMatch(layout, /telephone:/);
   assert.match(preferences, /localStorage/);
   await access(new URL("../public/perfil-andres-felipe-martinez-es.pdf", import.meta.url));
   await access(new URL("../public/andres-felipe-martinez-profile-en.pdf", import.meta.url));
