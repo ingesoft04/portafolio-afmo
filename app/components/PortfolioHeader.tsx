@@ -27,7 +27,7 @@ export function PortfolioHeader({ language, theme, navigation, onLanguageChange,
     <button className={`nav-scrim ${menuOpen ? "is-open" : ""}`} aria-label={language === "es" ? "Cerrar menú" : "Close menu"} tabIndex={menuOpen ? 0 : -1} onClick={() => setMenuOpen(false)}/>
     <nav id="main-navigation" className={menuOpen ? "is-open" : ""} aria-label={language === "es" ? "Navegación principal" : "Main navigation"}>
       <div className="nav-drawer-head"><span>{language === "es" ? "NAVEGACIÓN" : "NAVIGATION"}</span><button onClick={() => setMenuOpen(false)} aria-label={language === "es" ? "Cerrar menú" : "Close menu"}>×</button></div>
-      {navigation.map((item, index) => <a key={item} href={portfolioAnchors[index]} onClick={() => setMenuOpen(false)}><span>0{index + 1}</span>{item}</a>)}
+      {navigation.map((item, index) => <a key={item} href={portfolioAnchors[index]} onClick={() => setMenuOpen(false)}>{item}</a>)}
     </nav>
     <div className="controls">
       <button className="theme-toggle" onClick={onThemeChange} aria-label={`${language === "es" ? "Cambiar a modo" : "Switch to"} ${nextTheme}`} title={nextTheme}><span aria-hidden="true">{theme === "dark" ? "○" : "●"}</span>{nextTheme.toUpperCase()}</button>
