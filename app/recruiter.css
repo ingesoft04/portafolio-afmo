@@ -75,7 +75,7 @@ main[data-theme="light"] .opportunity{background:linear-gradient(135deg,rgba(0,0
   .nav nav{display:flex;position:fixed;inset:0 0 0 auto;width:min(86vw,360px);height:100dvh;transform:translateX(105%);flex-direction:column;align-items:stretch;justify-content:flex-start;gap:0;padding:24px;background:#0b1016;border:0;border-left:1px solid var(--line);box-shadow:-28px 0 65px rgba(0,0,0,.45);z-index:49;transition:transform .28s ease;overflow-y:auto}
   .nav nav.is-open{transform:translateX(0)}
   .nav-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:5px 4px 24px;border-bottom:1px solid var(--line);font:9px var(--font-mono);letter-spacing:.18em;color:var(--accent)}.nav-drawer-head button{width:38px;height:38px;border:1px solid var(--line);background:transparent;color:var(--text);font-size:24px;cursor:pointer}
-  .nav nav a{display:grid;grid-template-columns:38px 1fr;align-items:center;flex:none;padding:21px 6px;border-bottom:1px solid var(--line);font-size:16px;text-align:left;color:var(--text);white-space:normal}.nav nav a span{font:9px var(--font-mono);color:var(--accent)}
+  .nav nav a{display:block;flex:none;padding:21px 6px;border-bottom:1px solid var(--line);font-size:16px;text-align:left;color:var(--text);white-space:normal}
   main[data-theme="light"] .nav nav{background:#f7f7f5}
 }
 @media(max-width:580px){.menu-toggle{font-size:0;padding:10px}.menu-toggle span{font-size:16px}.nav{gap:8px}.controls{margin-left:auto}}
