@@ -19,11 +19,11 @@ export function isTheme(value) {
 export function documentLinks(language) {
   return language === "es"
     ? [
-        ["Perfil en inglés", "/andres-felipe-martinez-profile-en.pdf"],
-        ["Perfil en español", "/perfil-andres-felipe-martinez-es.pdf"],
+        ["Hoja de vida en inglés", "/andres-felipe-martinez-profile-en.pdf"],
+        ["Hoja de vida en español", "/perfil-andres-felipe-martinez-es.pdf"],
       ]
     : [
-        ["English profile", "/andres-felipe-martinez-profile-en.pdf"],
-        ["Spanish profile", "/perfil-andres-felipe-martinez-es.pdf"],
+        ["English résumé", "/andres-felipe-martinez-profile-en.pdf"],
+        ["Spanish résumé", "/perfil-andres-felipe-martinez-es.pdf"],
       ];
 }

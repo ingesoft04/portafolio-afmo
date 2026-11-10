@@ -53,11 +53,13 @@ CONTENT = {
         "position": "Analista de Seguridad en Redes y Consultor | Bogotá, Colombia | Abril 2024 – Noviembre 2026",
         "bullets": [
             "Administré servidores externos y monitoreé almacenamiento, memoria, procesador, servicios y disponibilidad de la plataforma empresarial SAMM.",
-            "Desplegué, actualicé y parametricé la plataforma en pruebas y producción; realicé validaciones de versiones y rollback ante fallas.",
+            "Desplegué, actualicé y parametricé la plataforma en ambientes de pruebas y producción; realicé validaciones y rollback ante fallas.",
+            "Ejecuté pruebas y validación de versiones de los componentes SN, SA, SR y APP, revisando paquetes, ambientes y funcionamiento.",
             "Configuré IIS, sitios, Application Pools, bindings, puertos, dominios, permisos, certificados SSL, web.config, endpoints y servicios de Windows.",
             "Diagnostiqué incidentes con logs, Visor de eventos, conectividad, IIS y SQL Server; documenté causas, acciones y soluciones.",
             "Elaboré consultas SQL, ejecuté procedimientos almacenados, modifiqué triggers y realicé respaldos, restauraciones y mantenimiento.",
-            "Automaticé tareas con PowerShell y .bat; validé API REST con Postman y JSON, ajusté reportes RDLC y brindé soporte a clientes.",
+            "Automaticé tareas operativas con PowerShell y archivos .bat; validé procesos mediante API REST, Postman y JSON y ajusté reportes RDLC.",
+            "Brindé soporte remoto y presencial, atendí clientes, realicé visitas técnicas y coordiné casos con equipos técnicos hasta su cierre.",
         ],
         "additional_heading": "EXPERIENCIA ADICIONAL",
         "additional": [
@@ -98,11 +100,13 @@ CONTENT = {
         "position": "Network Security Analyst and Consultant | Bogotá, Colombia | April 2024 – November 2026",
         "bullets": [
             "Administered external servers and monitored storage, memory, CPU, services, and availability for the SAMM enterprise platform.",
-            "Deployed, updated, and configured the platform in test and production; performed release validation and rollback after failures.",
+            "Deployed, updated, and configured the platform in test and production environments; performed validation and rollback after failures.",
+            "Tested and validated SN, SA, SR, and APP component releases, reviewing packages, environments, and operation.",
             "Configured IIS websites, Application Pools, bindings, ports, domains, permissions, SSL certificates, web.config, endpoints, and Windows services.",
             "Diagnosed incidents using logs, Event Viewer, connectivity checks, IIS, and SQL Server; documented causes, actions, and solutions.",
             "Built SQL queries, executed stored procedures, modified triggers, and performed backups, restores, and maintenance activities.",
-            "Automated tasks with PowerShell and .bat files; validated REST APIs with Postman and JSON, updated RDLC reports, and supported customers.",
+            "Automated operational tasks with PowerShell and .bat files; validated processes through REST APIs, Postman, and JSON, and updated RDLC reports.",
+            "Provided remote and on-site support, assisted customers, conducted technical visits, and coordinated cases with technical teams through closure.",
         ],
         "additional_heading": "ADDITIONAL EXPERIENCE",
         "additional": [
@@ -132,10 +136,10 @@ styles = getSampleStyleSheet()
 styles.add(ParagraphStyle(name="CVName", fontName="CVBold", fontSize=18, leading=19.5, textColor=NAVY, alignment=1, spaceAfter=2))
 styles.add(ParagraphStyle(name="CVRole", fontName="CVBold", fontSize=9.4, leading=11, textColor=NAVY, alignment=1, spaceAfter=2))
 styles.add(ParagraphStyle(name="CVContact", fontName="CVRegular", fontSize=8.2, leading=9.8, textColor=TEXT, alignment=1, spaceAfter=1.2))
-styles.add(ParagraphStyle(name="CVHeading", fontName="CVBold", fontSize=9.2, leading=10.5, textColor=NAVY, spaceBefore=4.8, spaceAfter=2, borderWidth=0, borderColor=LINE))
-styles.add(ParagraphStyle(name="CVBody", fontName="CVRegular", fontSize=8.1, leading=9.9, textColor=TEXT, spaceAfter=1.8))
-styles.add(ParagraphStyle(name="CVLine", fontName="CVRegular", fontSize=7.85, leading=9.4, textColor=TEXT, spaceAfter=.8))
-styles.add(ParagraphStyle(name="CVBullet", fontName="CVRegular", fontSize=7.7, leading=9.15, textColor=TEXT, leftIndent=8, firstLineIndent=-5, bulletIndent=2, spaceAfter=.45))
+styles.add(ParagraphStyle(name="CVHeading", fontName="CVBold", fontSize=9, leading=10.2, textColor=NAVY, spaceBefore=3.5, spaceAfter=1.5, borderWidth=0, borderColor=LINE))
+styles.add(ParagraphStyle(name="CVBody", fontName="CVRegular", fontSize=7.9, leading=9.4, textColor=TEXT, spaceAfter=1.3))
+styles.add(ParagraphStyle(name="CVLine", fontName="CVRegular", fontSize=7.6, leading=8.9, textColor=TEXT, spaceAfter=.55))
+styles.add(ParagraphStyle(name="CVBullet", fontName="CVRegular", fontSize=7.4, leading=8.6, textColor=TEXT, leftIndent=8, firstLineIndent=-5, bulletIndent=2, spaceAfter=.3))
 styles.add(ParagraphStyle(name="CVFooter", fontName="CVRegular", fontSize=6.5, leading=7, textColor=MUTED, alignment=1))
 
 

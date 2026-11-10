@@ -20,12 +20,10 @@ interface ProjectCaseStudiesProps {
 
 export function ProjectCaseStudies(props: ProjectCaseStudiesProps) {
   const emblems = [
-    ["DEF", "SHIELD", "◇"],
     ["WELL", "CARE", "+"],
     ["B2B", "PORTAL", "↗"],
     ["BOOK", "RESERVE", "▦"],
     ["T+", "CAPSULE", "⌁"],
-    ["CBV", "EDU API", "▤"],
     ["VIRT", "HOME LAB", "▣"],
   ];
   return <section id="proyectos" className="section projects">
@@ -35,7 +33,7 @@ export function ProjectCaseStudies(props: ProjectCaseStudiesProps) {
       <div className="case-top"><span>{project.code}</span><b>{project.status}</b></div>
       <div className={`case-emblem case-emblem-${index + 1}`} role="img" aria-label={`${project.title}: ${emblems[index][1]}`}><b aria-hidden="true">{emblems[index][2]}</b><strong>{emblems[index][0]}</strong><small>{emblems[index][1]}</small><i aria-hidden="true"/></div>
       <h3>{project.title}</h3><p>{project.summary}</p>
-      {(index === 0 || index === 4) && <div className="case-visual" aria-hidden="true"><span>INPUT</span><i>→</i><span>{index === 0 ? "DETECT" : "STORE"}</span><i>→</i><span>{index === 0 ? "ALERT" : "DELIVER"}</span></div>}
+      {index === 3 && <div className="case-visual" aria-hidden="true"><span>INPUT</span><i>→</i><span>STORE</span><i>→</i><span>DELIVER</span></div>}
       <div className="case-contribution"><small>{props.contributionLabel}</small><p>{project.contribution}</p></div>
       <p className="case-evidence"><strong>✓</strong>{project.evidence}</p>
       <div className="case-tags">{project.tags.map(tag => <b key={tag}>{tag}</b>)}</div>
