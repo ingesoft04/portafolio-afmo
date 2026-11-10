@@ -100,6 +100,19 @@ Rutas recomendadas:
 
 En el proveedor defina `NEXT_PUBLIC_SITE_URL` con el dominio final. Así la URL canónica, los datos estructurados y la tarjeta social `public/og.png` apuntan al sitio publicado.
 
+### Vercel
+
+El proyecto utiliza Next.js nativo y puede importarse directamente desde GitHub en Vercel:
+
+1. Importe `ingesoft04/portafolio-afmo` y seleccione `main` como rama de producción.
+2. Mantenga el Framework Preset en **Next.js** y el directorio raíz en la raíz del repositorio.
+3. Defina `NEXT_PUBLIC_BASE_PATH` vacío.
+4. Defina `NEXT_PUBLIC_SITE_URL` con la URL pública final y aplíquela a Production.
+5. Use las URL Preview generadas para cada pull request antes de fusionar.
+6. Añada el dominio personalizado únicamente después de validar HTML, logos, documentos, SEO y enlaces en Preview.
+
+La VM puede mantenerse como respaldo durante la transición. No cambie DNS ni retire el contenedor productivo hasta que el despliegue de Vercel haya superado las comprobaciones.
+
 ## Arquitectura
 
 - `app/page.tsx`: composición y contenido bilingüe.

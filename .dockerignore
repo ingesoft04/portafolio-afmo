@@ -2,6 +2,7 @@
 .gitignore
 .wrangler
 .vinext
+.next
 node_modules
 dist
 output
