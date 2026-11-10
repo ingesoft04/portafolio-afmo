@@ -78,7 +78,7 @@ def create(lang):
     header = section.header.paragraphs[0]; header.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     font(header.add_run("FMV InfraSec  |  SOFTWARE · SECURITY · INFRASTRUCTURE"), 8.5, True, MUTED)
     footer = section.footer.paragraphs[0]; footer.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    font(footer.add_run("Andrés Felipe Martínez Obando · ingenierossoftware31@gmail.com · +57 302 528 6029"), 8.5, False, MUTED)
+    font(footer.add_run("Andrés Felipe Martínez Obando · amartinezobando@gmail.com · +57 350 207 7163"), 8.5, False, MUTED)
 
     p = doc.add_paragraph(); p.paragraph_format.space_after = Pt(4)
     font(p.add_run(d["label"]), 9, True, CYAN)
