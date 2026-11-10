@@ -170,7 +170,7 @@ def build(lang, filename):
 
     d.add_heading("2. Datos pendientes antes de publicar" if es else "2. Information to complete before launch", 1)
     comparison(d, ["Campo" if es else "Field", "Acción" if es else "Action", "Estado" if es else "Status"], [
-        ["Teléfono" if es else "Phone", "+57 350 207 7163 · WhatsApp", "Configurado" if es else "Configured"],
+        ["Teléfono" if es else "Phone", "+57 302 528 6029 · WhatsApp", "Configurado" if es else "Configured"],
         ["Correo" if es else "Email", "amartinezobando@gmail.com", "Configurado" if es else "Configured"],
         ["GitHub", "github.com/ingesoft04", "Configurado" if es else "Configured"],
         ["LinkedIn", "linkedin.com/in/anmartinez94", "Configurado" if es else "Configured"],
