@@ -10,7 +10,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "docs:profiles": "python build/create_language_pdfs.py && python build/qa_language_pdfs.py",
+    "docs:profiles": "python build/create_cv_pdfs.py && python build/qa_language_pdfs.py",
     "docs:manuals": "python build/create_implementation_manuals.py",
     "verify": "pnpm run docs:profiles && pnpm run build",
     "test:unit": "node --test tests/portfolio-logic.unit.test.mjs",

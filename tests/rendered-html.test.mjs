@@ -62,10 +62,10 @@ test("keeps professional links, documents, themes, and privacy controls wired", 
   ]);
   assert.match(page, /OpportunitySelector/);
   assert.match(page, /track-emblem/);
-  assert.match(page, /Emblema digital/);
-  assert.match(page, /Emblema automotriz/);
+  assert.match(page, /Soporte e infraestructura/);
+  assert.match(page, /IIS, datos y automatización/);
   assert.match(styles, /\.track-digital/);
-  assert.match(styles, /\.track-automotive/);
+  assert.doesNotMatch(page, /Emblema automotriz/);
   assert.doesNotMatch(page, /REMOTE \/ UTC-5/);
   assert.doesNotMatch(page, /ring r1/);
   assert.match(contact, /Professional documents/);

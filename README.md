@@ -1,6 +1,6 @@
 # Portafolio FMV InfraSec
 
-Portafolio bilingüe de Andrés Felipe Martínez Obando para oportunidades remotas en ingeniería de software, seguridad de la información, infraestructura, soporte técnico y mecatrónica automotriz.
+Portafolio bilingüe de Andrés Felipe Martínez Obando para oportunidades en soporte de aplicaciones, infraestructura, seguridad TI, automatización e ingeniería de software. La experiencia automotriz se conserva como trayectoria complementaria.
 
 ## Datos públicos
 

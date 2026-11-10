@@ -5,18 +5,18 @@ import type { Language } from "../hooks/usePortfolioPreferences";
 
 const options = {
   es: [
-    ["security", "Seguridad e infraestructura", "Administración de servidores, soporte L2/L3, incidentes, continuidad y apoyo en SGSI ISO/IEC 27001."],
-    ["software", "Software y automatización", "APIs, datos, pruebas funcionales, Docker, documentación y automatización asistida por IA."],
-    ["support", "Asistencia virtual técnica", "Atención a clientes, seguimiento de solicitudes, documentación y coordinación operativa remota."],
-    ["automotive", "Mecatrónica automotriz", "Diagnóstico guiado, inspección, mantenimiento preventivo y apoyo técnico para propietarios o flotas."],
-    ["freelance", "Proyectos freelance", "Disponibilidad por objetivos o por horas. Referencia: USD 25-40/h, ajustable según alcance y complejidad."],
+    ["support", "Soporte de aplicaciones", "Atención de incidentes, análisis de causa raíz, validación de versiones, soporte a clientes y documentación técnica."],
+    ["infrastructure", "Infraestructura y despliegues", "Windows Server, Linux, IIS, servicios, certificados, monitoreo, ambientes de pruebas y producción, y rollback."],
+    ["data", "Datos, APIs y reportes", "SQL Server, procedimientos almacenados, triggers, API REST, Postman, JSON y reportes RDLC."],
+    ["security", "Seguridad de la información", "Gestión de incidentes y riesgos, SGSI, controles del Anexo A y preparación ISO/IEC 27001."],
+    ["automation", "Automatización", "PowerShell, archivos .bat, Git y optimización de tareas operativas y técnicas repetitivas."],
   ],
   en: [
-    ["security", "Security & infrastructure", "Server administration, L2/L3 support, incidents, continuity, and ISO/IEC 27001 ISMS support."],
-    ["software", "Software & automation", "APIs, data, functional testing, Docker, documentation, and AI-assisted automation."],
-    ["support", "Technical virtual assistance", "Customer support, request tracking, documentation, and remote operational coordination."],
-    ["automotive", "Automotive mechatronics", "Guided diagnostics, inspection, preventive maintenance, and technical support for owners or fleets."],
-    ["freelance", "Freelance projects", "Available for outcome-based or hourly work. Reference: USD 25-40/h, adjusted to scope and complexity."],
+    ["support", "Application support", "Incident handling, root cause analysis, release validation, customer support, and technical documentation."],
+    ["infrastructure", "Infrastructure & deployments", "Windows Server, Linux, IIS, services, certificates, monitoring, test and production environments, and rollback."],
+    ["data", "Data, APIs & reporting", "SQL Server, stored procedures, triggers, REST APIs, Postman, JSON, and RDLC reports."],
+    ["security", "Information security", "Incident and risk management, ISMS, Annex A controls, and ISO/IEC 27001 preparation."],
+    ["automation", "Automation", "PowerShell, .bat files, Git, and optimization of repetitive operational and technical tasks."],
   ],
 } as const;
 
