@@ -19,12 +19,12 @@ function subscribe(onStoreChange: () => void) {
 
 function getLanguageSnapshot(): Language {
   const storedLanguage = window.localStorage.getItem("fmv-language");
-  return isLanguage(storedLanguage) ? storedLanguage : "es";
+  return isLanguage(storedLanguage) ? storedLanguage as Language : "es";
 }
 
 function getThemeSnapshot(): Theme {
   const storedTheme = window.localStorage.getItem("fmv-theme");
-  return isTheme(storedTheme) ? storedTheme : "dark";
+  return isTheme(storedTheme) ? storedTheme as Theme : "dark";
 }
 
 function notifyPreferenceChange() {
@@ -32,8 +32,8 @@ function notifyPreferenceChange() {
 }
 
 export function usePortfolioPreferences() {
-  const language = useSyncExternalStore(subscribe, getLanguageSnapshot, () => "es");
-  const theme = useSyncExternalStore(subscribe, getThemeSnapshot, () => "dark");
+  const language = useSyncExternalStore<Language>(subscribe, getLanguageSnapshot, () => "es");
+  const theme = useSyncExternalStore<Theme>(subscribe, getThemeSnapshot, () => "dark");
 
   return {
     language,

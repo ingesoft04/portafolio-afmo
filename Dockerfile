@@ -19,9 +19,10 @@ RUN pnpm run build
 FROM base AS production
 ENV NODE_ENV=production
 ENV PORT=3000
-COPY --from=dependencies /app/node_modules ./node_modules
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/package.json ./package.json
+ENV HOSTNAME=0.0.0.0
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 CMD node -e "fetch('http://127.0.0.1:3000'+(process.env.NEXT_PUBLIC_BASE_PATH||'')+'/').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"
-CMD ["pnpm", "start", "--", "--hostname", "0.0.0.0", "--port", "3000"]
+CMD ["node", "server.js"]

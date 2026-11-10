@@ -1,33 +1,54 @@
 import assert from "node:assert/strict";
+import { spawn } from "node:child_process";
 import { access, readFile } from "node:fs/promises";
+import { once } from "node:events";
 import test from "node:test";
 
-async function render() {
-  const workerUrl = new URL("../dist/server/index.js", import.meta.url);
-  workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
-  const { default: worker } = await import(workerUrl.href);
-  return worker.fetch(new Request("https://portfolio.example/", { headers: { accept: "text/html" } }), {
-    ASSETS: { fetch: async () => new Response("Not found", { status: 404 }) },
-  }, { waitUntil() {}, passThroughOnException() {} });
+async function withServer(run) {
+  const port = 3200 + (process.pid % 1000);
+  const server = spawn(process.execPath, [".next/standalone/server.js"], {
+    cwd: new URL("..", import.meta.url),
+    env: { ...process.env, HOSTNAME: "127.0.0.1", PORT: String(port) },
+    stdio: ["ignore", "pipe", "pipe"],
+  });
+  let startupOutput = "";
+  server.stdout.on("data", chunk => { startupOutput += chunk; });
+  server.stderr.on("data", chunk => { startupOutput += chunk; });
+  try {
+    for (let attempt = 0; attempt < 40; attempt += 1) {
+      try {
+        const response = await fetch(`http://127.0.0.1:${port}/`);
+        if (response.ok) return await run(response, port);
+      } catch {
+        // The standalone server may still be binding its port; retry briefly.
+      }
+      await new Promise(resolve => setTimeout(resolve, 250));
+    }
+    throw new Error(`Next.js server did not start: ${startupOutput}`);
+  } finally {
+    server.kill("SIGTERM");
+    if (server.exitCode === null) await once(server, "exit");
+  }
 }
 
 test("server-renders the professional portfolio and SEO metadata", async () => {
-  const response = await render();
-  assert.equal(response.status, 200);
-  assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
-  assert.match(response.headers.get("content-security-policy") ?? "", /frame-ancestors 'none'/);
-  assert.equal(response.headers.get("x-content-type-options"), "nosniff");
-  assert.equal(response.headers.get("x-frame-options"), "DENY");
-  assert.equal(response.headers.get("referrer-policy"), "strict-origin-when-cross-origin");
-  assert.equal(response.headers.get("strict-transport-security"), "max-age=31536000; includeSubDomains");
-  const html = await response.text();
-  assert.match(html, /Andrés Felipe Martínez/);
-  assert.match(html, /Software, Security &amp; Infrastructure/);
-  assert.match(html, /property="og:image"/);
-  assert.match(html, /application\/ld\+json/);
-  assert.match(html, /¿Qué tipo de apoyo necesita\?/);
-  assert.match(html, /Perfiles profesionales verificados/);
-  assert.doesNotMatch(html, /solicitar caso de estudio/i);
+  await withServer(async response => {
+    assert.equal(response.status, 200);
+    assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
+    assert.match(response.headers.get("content-security-policy") ?? "", /frame-ancestors 'none'/);
+    assert.equal(response.headers.get("x-content-type-options"), "nosniff");
+    assert.equal(response.headers.get("x-frame-options"), "DENY");
+    assert.equal(response.headers.get("referrer-policy"), "strict-origin-when-cross-origin");
+    assert.equal(response.headers.get("strict-transport-security"), "max-age=31536000; includeSubDomains");
+    const html = await response.text();
+    assert.match(html, /Andrés Felipe Martínez/);
+    assert.match(html, /Software, Security &amp; Infrastructure/);
+    assert.match(html, /property="og:image"/);
+    assert.match(html, /application\/ld\+json/);
+    assert.match(html, /¿Qué tipo de apoyo necesita\?/);
+    assert.match(html, /Perfiles profesionales verificados/);
+    assert.doesNotMatch(html, /solicitar caso de estudio/i);
+  });
 });
 
 test("keeps professional links, documents, themes, and privacy controls wired", async () => {
