@@ -16,7 +16,7 @@
     "test:unit": "node --test tests/portfolio-logic.unit.test.mjs",
     "test:render": "node --test tests/rendered-html.test.mjs",
     "test": "pnpm run build && pnpm run test:unit && pnpm run test:render",
-    "lint": "eslint . --ignore-pattern .next"
+    "lint": "eslint . --ignore-pattern .next --ignore-pattern .vercel"
   },
   "dependencies": {
     "next": "16.4.6",

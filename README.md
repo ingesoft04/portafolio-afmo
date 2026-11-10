@@ -4,8 +4,8 @@ Portafolio bilingüe de Andrés Felipe Martínez Obando para oportunidades remot
 
 ## Datos públicos
 
-- Correo: `ingenierossoftware31@gmail.com`
-- Teléfono y WhatsApp corporativo: `+57 302 528 6029`
+- Correo: `amartinezobando@gmail.com`
+- Teléfono y WhatsApp: `+57 350 207 7163`
 - Idiomas de la web: español e inglés
 - Apariencia: modo claro y oscuro
 - LinkedIn: `linkedin.com/in/anmartinez94`
