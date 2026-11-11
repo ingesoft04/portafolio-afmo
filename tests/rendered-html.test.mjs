@@ -78,6 +78,9 @@ test("keeps professional links, documents, themes, and privacy controls wired", 
   assert.match(projects, /case-emblem/);
   assert.match(projects, /case-details/);
   assert.match(projects, /<details/);
+  assert.match(projects, /project-selector/);
+  assert.match(projects, /selected-project/);
+  assert.match(projects, /useState/);
   assert.match(projects, /CAPSULE/);
   assert.doesNotMatch(projects, /SHIELD|EDU API/);
   assert.doesNotMatch(page, /campus educativo virtual|Laboratorio defensivo de ciberseguridad/);
@@ -92,4 +95,8 @@ test("keeps professional links, documents, themes, and privacy controls wired", 
   await access(new URL("../public/perfil-andres-felipe-martinez-es.pdf", import.meta.url));
   await access(new URL("../public/andres-felipe-martinez-profile-en.pdf", import.meta.url));
   await access(new URL("../public/og.png", import.meta.url));
+  await access(new URL("../public/projects/joyeria.webp", import.meta.url));
+  await access(new URL("../public/projects/psico-luz.webp", import.meta.url));
+  await access(new URL("../public/projects/maquillaje-web.webp", import.meta.url));
+  await access(new URL("../public/projects/capsula-tiempo.webp", import.meta.url));
 });
