@@ -76,6 +76,8 @@ test("keeps professional links, documents, themes, and privacy controls wired", 
   assert.match(contact, /upwork\.com\/freelancers/);
   assert.match(projects, /case-evidence/);
   assert.match(projects, /case-emblem/);
+  assert.match(projects, /case-details/);
+  assert.match(projects, /<details/);
   assert.match(projects, /CAPSULE/);
   assert.doesNotMatch(projects, /SHIELD|EDU API/);
   assert.doesNotMatch(page, /campus educativo virtual|Laboratorio defensivo de ciberseguridad/);
