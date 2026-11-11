@@ -79,8 +79,11 @@ test("keeps professional links, documents, themes, and privacy controls wired", 
   assert.match(projects, /CAPSULE/);
   assert.doesNotMatch(projects, /SHIELD|EDU API/);
   assert.doesNotMatch(page, /campus educativo virtual|Laboratorio defensivo de ciberseguridad/);
-  assert.match(page, /Gestión para profesionales de bienestar/);
-  assert.match(page, /Laboratorio de infraestructura y almacenamiento virtualizado/);
+  assert.match(page, /title:"Joyería"/);
+  assert.match(page, /title:"Psico Luz"/);
+  assert.match(page, /title:"Maquillaje Web"/);
+  assert.match(page, /title:"Cápsula de Tiempo"/);
+  assert.doesNotMatch(page, /Gestión para profesionales de bienestar|Portal comercial de servicios tecnológicos|Plataforma de reservas y servicios|Laboratorio de infraestructura/);
   assert.doesNotMatch(page, /KVM|libvirt|QCOW2|OpenMediaVault|Ubuntu Server 24\.04|Windows Server 2025|Windows 10/);
   assert.doesNotMatch(layout, /telephone:/);
   assert.match(preferences, /localStorage/);

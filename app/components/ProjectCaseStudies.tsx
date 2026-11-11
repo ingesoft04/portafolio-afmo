@@ -20,11 +20,10 @@ interface ProjectCaseStudiesProps {
 
 export function ProjectCaseStudies(props: ProjectCaseStudiesProps) {
   const emblems = [
-    ["WELL", "CARE", "+"],
-    ["B2B", "PORTAL", "↗"],
-    ["BOOK", "RESERVE", "▦"],
+    ["BZL", "JEWELRY", "◇"],
+    ["PSI", "CARE", "+"],
+    ["MAKE", "BEAUTY", "✦"],
     ["T+", "CAPSULE", "⌁"],
-    ["VIRT", "HOME LAB", "▣"],
   ];
   return <section id="proyectos" className="section projects">
     <SectionHead label={props.label} title={props.title} text={props.text}/>
